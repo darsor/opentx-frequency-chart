@@ -1,5 +1,5 @@
 # OpenTX FPV Frequency Chart
-A Lua script for FrSky Taranis Q X7 transmitters running OpenTX firmware
+A Lua script for FrSky Taranis Q X7 transmitters running OpenTX 2.2
 
 ![x7-pos](http://i.imgur.com/4kvOI5L.png)
 ![x7-freq](http://i.imgur.com/2gHPHAA.png)
