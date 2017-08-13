@@ -11,6 +11,8 @@ charts directly on your Taranis transmitter!
 
 The menu button can be used to switch between charts.
 
+Inspired by [this project](http://helpmefpv.com/2016/03/16/5-8ghz-vtx-channel-chart-for-frsky-taranis/).
+
 ### Installation
 
 Make sure your OpenTX firmware is Lua enabled.
@@ -19,4 +21,4 @@ Simply copy `FREQ.lua` into the `/SCRIPTS/TELEMTRY` folder of your transmitter's
 renamed, but the name CANNOT be more than 6 characters long.
 
 Once the file is on your SD card, navigate to your model's DISPLAY page (page 13/13), then select the script
-from the drop-down menu.
+from the drop-down menu. Hold the PAGE button on your model's main screen to access telemetry scripts.
