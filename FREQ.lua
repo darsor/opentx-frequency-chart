@@ -1,7 +1,10 @@
 local current_screen = 1
 
+-- minimum and maximum FPV frequencies
 local min_freq = 5645
 local max_freq = 5945
+
+-- minimum and maximum screen x-coordinates for position screen
 local min_xpos = 9
 local max_xpos = 118
 
@@ -50,7 +53,7 @@ local function draw_chan(chan, x, y)
 end
 
 -- frequency screen
-local function draw_screen1()
+local function draw_freq_screen()
     lcd.clear()
 
     -- table coordinates
@@ -89,7 +92,7 @@ local function draw_screen1()
 end
 
 -- position screen
-local function draw_screen2()
+local function draw_pos_screen()
     lcd.clear()
 
     -- band coordinates
@@ -128,9 +131,9 @@ local function run_func(event)
 
     -- draw current screen
     if current_screen == 1 then
-        draw_screen1()
+        draw_freq_screen()
     elseif current_screen == 2 then
-        draw_screen2()
+        draw_pos_screen()
     end
 end
 
