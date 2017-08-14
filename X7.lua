@@ -61,11 +61,9 @@ local function draw_freq_screen()
     local ypos = { 8, 15, 22, 29, 36, 43, 50, 57}
 
     -- draw vertical dividers
-    lcd.drawLine(  7, 1,   7, 62, SOLID, FORCE)
-    lcd.drawLine( 31, 1,  31, 62, SOLID, FORCE)
-    lcd.drawLine( 55, 1,  55, 62, SOLID, FORCE)
-    lcd.drawLine( 79, 1,  79, 62, SOLID, FORCE)
-    lcd.drawLine(103, 1, 103, 62, SOLID, FORCE)
+    for i=7,103,24 do
+        lcd.drawLine(i, 1, i, 62, SOLID, FORCE)
+    end
 
     -- draw horizontal divider
     lcd.drawLine(  1, 6,  15, 6, SOLID, FORCE)
@@ -102,11 +100,9 @@ local function draw_pos_screen()
     lcd.drawLine(7, 3, 7, 60, SOLID, FORCE)
 
     -- draw horizontal dividers
-    lcd.drawLine(8,  8, 126,  8, SOLID, FORCE)
-    lcd.drawLine(8, 20, 126, 20, SOLID, FORCE)
-    lcd.drawLine(8, 32, 126, 32, SOLID, FORCE)
-    lcd.drawLine(8, 44, 126, 44, SOLID, FORCE)
-    lcd.drawLine(8, 56, 126, 56, SOLID, FORCE)
+    for i=8,56,12 do
+        lcd.drawLine(8, i, 126, i, SOLID, FORCE)
+    end
 
     -- draw band letters and channel boxes
     for band, freqs in pairs(freq) do
