@@ -1,24 +1,28 @@
 # OpenTX FPV Frequency Chart
-A Lua script for FrSky Taranis Q X7 transmitters running OpenTX 2.2
+A Lua script for FrSky Taranis transmitters running OpenTX 2.2
 
+### Taranis X9D Screenshots
+![x9d-pos](http://i.imgur.com/LJ1MlxC.png)
+![x9d-freq](http://i.imgur.com/hEfALmc.png)
+
+### Taranis Q X7 Screenshots
 ![x7-pos](http://i.imgur.com/4kvOI5L.png)
 ![x7-freq](http://i.imgur.com/2gHPHAA.png)
 
-### About
+## About
+When flying with other pilots, managing VTX frequencies can be a chore. I often found myself digging through my gear
+looking for my VTX frequency card, only to end up looking it up on my phone (again). This Lua script displays 5.8GHz
+VTX frequency charts directly on your Taranis transmitter!
 
-Tired of digging through your bag to find your VTX frequency card? This Lua script displays 5.8GHz VTX frequency
-charts directly on your Taranis transmitter!
-
-The menu button can be used to switch between charts.
+Use the menu button to switch between charts.
 
 Inspired by [this project](http://helpmefpv.com/2016/03/16/5-8ghz-vtx-channel-chart-for-frsky-taranis/).
 
-### Installation
+## Installation
+Make sure you are using OpenTX 2.2 with Lua enabled.
 
-Make sure your OpenTX firmware is Lua enabled.
+Simply copy `X7.lua` or `X9.lua` (depending on which transmitter you have) into the `/SCRIPTS/TELEMTRY` folder of
+your transmitter's SD card. Rename the file to whatever you want (e.g. `FREQ.lua`), but the name CANNOT be more
+than 6 characters long, or it will not show up in the next step.
 
-Simply copy `FREQ.lua` into the `/SCRIPTS/TELEMTRY` folder of your transmitter's SD card. The `FREQ.lua` file can be
-renamed, but the name CANNOT be more than 6 characters long.
-
-Once the file is on your SD card, navigate to your model's DISPLAY page (page 13/13), then select the script
-from the drop-down menu. Hold the PAGE button on your model's main screen to access telemetry scripts.
+Once the file is on your SD card, navigate to your model's DISPLAY page, select the "Script" option for one of the screens, then select the script from the drop-down menu. Hold the PAGE button on your model's main screen to access telemetry scripts.
