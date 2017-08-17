@@ -41,3 +41,6 @@ luac.out
 
 # GIMP files
 *.xcf
+
+# archives
+/archives

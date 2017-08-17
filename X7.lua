@@ -8,21 +8,15 @@ local max_freq = 5945
 local min_xpos = 9
 local max_xpos = 118
 
-local freq = {
-    A = {"5865", "5845", "5825", "5805", "5785", "5765", "5745", "5725"},
-    B = {"5733", "5752", "5771", "5790", "5809", "5828", "5847", "5866"},
-    E = {"5705", "5685", "5665", "5645", "5885", "5905", "5925", "5945"},
-    F = {"5740", "5760", "5780", "5800", "5820", "5840", "5860", "5880"},
-    R = {"5658", "5695", "5732", "5769", "5806", "5843", "5880", "5917"}
+local bands = {"A", "B", "E", "F", "R"}
+local freqs = {
+    {5865, 5845, 5825, 5805, 5785, 5765, 5745, 5725},
+    {5733, 5752, 5771, 5790, 5809, 5828, 5847, 5866},
+    {5705, 5685, 5665, 5645, 5885, 5905, 5925, 5945},
+    {5740, 5760, 5780, 5800, 5820, 5840, 5860, 5880},
+    {5658, 5695, 5732, 5769, 5806, 5843, 5880, 5917}
 }
-
-local pos = {
-    A = {},
-    B = {},
-    E = {},
-    F = {},
-    R = {}
-}
+local pos = { {}, {}, {}, {}, {} }
 
 -- initialize frequency positions (pos) for screen 2
 local function init_func()
@@ -30,9 +24,9 @@ local function init_func()
     local pos_range = max_xpos - min_xpos
 
     -- populate postion arrays
-    for band, freqs in pairs(freq) do
-        for i=1,8 do
-            pos[band][i] = (tonumber(freqs[i]) - min_freq) / freq_range * pos_range + min_xpos
+    for band=1,#(bands) do
+        for chan=1,8 do
+            pos[band][chan] = (freqs[band][chan] - min_freq) / freq_range * pos_range + min_xpos
         end
     end
 end
@@ -57,8 +51,8 @@ local function draw_freq_screen()
     lcd.clear()
 
     -- table coordinates
-    local xpos = { A = 10, B = 34, E = 58, F = 82, R = 106 }
-    local ypos = { 8, 15, 22, 29, 36, 43, 50, 57}
+    local xpos = { 10, 34, 58, 82, 106 }
+    local ypos = { 8, 15, 22, 29, 36, 43, 50, 57 }
 
     -- draw vertical dividers
     for i=7,103,24 do
@@ -79,12 +73,12 @@ local function draw_freq_screen()
     end
 
     -- draw band letters and frequencies
-    for band, freqs in pairs(freq) do
+    for band=1,#(bands) do
         -- draw band letter
-        lcd.drawText(xpos[band]+7, 1, band, SMLSIZE)
+        lcd.drawText(xpos[band]+7, 1, bands[band], SMLSIZE)
         -- draw frequencies
-        for i=1,8 do
-            lcd.drawText(xpos[band], ypos[i], freqs[i], SMLSIZE)
+        for chan=1,8 do
+            lcd.drawText(xpos[band], ypos[chan], freqs[band][chan], SMLSIZE)
         end
     end
 end
@@ -94,7 +88,7 @@ local function draw_pos_screen()
     lcd.clear()
 
     -- band coordinates
-    local ypos = { A = 3, B = 15, E = 27, F = 39, R = 51 }
+    local ypos = { 3, 15, 27, 39, 51 }
 
     -- draw vertical divider
     lcd.drawLine(7, 3, 7, 60, SOLID, FORCE)
@@ -105,12 +99,12 @@ local function draw_pos_screen()
     end
 
     -- draw band letters and channel boxes
-    for band, freqs in pairs(freq) do
+    for band=1,#(bands) do
         -- draw band letter
-        lcd.drawText(1, ypos[band]+2, band, SMLSIZE)
+        lcd.drawText(1, ypos[band]+2, bands[band], SMLSIZE)
         -- draw channel boxes
-        for i=1,8 do
-            draw_chan(i, pos[band][i], ypos[band])
+        for chan=1,8 do
+            draw_chan(chan, pos[band][chan], ypos[band])
         end
     end
 end
