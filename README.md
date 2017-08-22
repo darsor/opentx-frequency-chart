@@ -21,8 +21,16 @@ Inspired by [this project](http://helpmefpv.com/2016/03/16/5-8ghz-vtx-channel-ch
 ## Installation
 Make sure you are using OpenTX 2.2 with Lua enabled.
 
+### Easy way:
+
+Download the latest release [here](https://github.com/darsor/opentx-frequency-chart/releases) and follow the instructions.
+
+### Manual way (latest version):
+
 Simply copy `X7.lua` or `X9.lua` (depending on which transmitter you have) into the `/SCRIPTS/TELEMTRY` folder of
 your transmitter's SD card. Rename the file to whatever you want (e.g. `FREQ.lua`), but the name CANNOT be more
 than 6 characters long, or it will not show up in the next step.
 
-Once the file is on your SD card, navigate to your model's DISPLAY page, select the "Script" option for one of the screens, then select the script from the drop-down menu. Hold the PAGE button on your model's main screen to access telemetry scripts.
+Once the file is on your SD card, navigate to your model's DISPLAY page, select the "Script" option for one of the
+screens, then select the script from the drop-down menu. Hold the PAGE button on your model's main screen to access
+telemetry scripts.
