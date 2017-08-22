@@ -131,6 +131,7 @@ local function run_func(event)
     elseif current_screen == 2 then
         draw_pos_screen()
     end
+    return 0
 end
 
 return { init=init_func, run=run_func }
