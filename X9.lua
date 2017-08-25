@@ -61,7 +61,9 @@ local function draw_chan(chan, x, y, flags)
     lcd.drawLine(x,   y+9, x+7, y+9, SOLID, FORCE)
 
     -- clear other pixel(s) inside the border
-    lcd.drawLine(x+1, y+5, x+1, y+5, SOLID, ERASE)
+    if not flags == INVERS then
+        lcd.drawLine(x+1, y+5, x+1, y+5, SOLID, ERASE)
+    end
 end
 
 -- frequency screen
@@ -96,6 +98,8 @@ local function draw_freq_screen()
             if is_legal(freqs[i]) then 
                 lcd.drawText(xpos[i], ypos[band], freqs[i])
             else
+                -- fill out box
+                lcd.drawFilledRectangle(xpos[i]-4, ypos[band]-2, 26, 10, SOLID)
                 lcd.drawText(xpos[i], ypos[band], freqs[i], INVERS)
             end 
         end
