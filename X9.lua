@@ -9,7 +9,7 @@ local max_allowed = 10000
 
 -- Uncomment following two lines for EU
 min_allowed = 5725
-max_allowed = 5880
+max_allowed = 5875
 
 -- minimum and maximum screen x-coordinates for position screen
 local min_xpos = 11
