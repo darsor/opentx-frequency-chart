@@ -62,7 +62,9 @@ local function draw_chan(chan, x, y, flags)
     lcd.drawLine(x,   y+9, x+7, y+9, SOLID, FORCE)
 
     -- clear other pixel(s) inside the border
-    lcd.drawLine(x+1, y+5, x+1, y+5, SOLID, ERASE)
+    if not flags == INVERS then
+        lcd.drawLine(x+1, y+5, x+1, y+5, SOLID, ERASE)
+     end               
 end
 
 -- frequency screen
@@ -75,7 +77,7 @@ local function draw_freq_screen()
 
     -- draw vertical dividers
     for i=7,103,24 do
-        lcd.drawLine(i, 1, i, 62, SOLID, FORCE)
+        lcd.drawLine(i, 1, i, 63, SOLID, FORCE)
     end
 
     -- draw horizontal divider
@@ -100,6 +102,8 @@ local function draw_freq_screen()
             if is_legal(freqs[i]) then
                 lcd.drawText(xpos[band], ypos[i], freqs[i], SMLSIZE)
             else
+                -- fill out box
+                lcd.drawFilledRectangle(xpos[band]-3, ypos[i]-1, 25, 7, SOLID)
                 lcd.drawText(xpos[band], ypos[i], freqs[i], SMLSIZE + INVERS)
             end
         end
