@@ -4,12 +4,9 @@ local current_screen = 1
 local min_freq = 5645
 local max_freq = 5945
 
-local min_allowed = 0
-local max_allowed = 10000
-
 -- Uncomment following two lines for EU
-min_allowed = 5725
-max_allowed = 5875
+--local min_allowed = 5725
+--local max_allowed = 5875
 
 -- minimum and maximum screen x-coordinates for position screen
 local min_xpos = 9
@@ -46,13 +43,16 @@ end
 
 -- returns if a frequency is legal
 local function is_legal(freq)
-   return tonumber(freq) > min_allowed and tonumber(freq) < max_allowed
+    if max_allowed == nil or min_allowed == nil then
+        return true
+    else
+        return tonumber(freq) > min_allowed and tonumber(freq) < max_allowed
+    end
 end
-
 
 -- draw a channel number and border
 local function draw_chan(chan, x, y, flags)
-    -- draw number    
+    -- draw number
     lcd.drawText(x+2, y+2, chan, SMLSIZE + flags)
 
     -- draw border
@@ -62,9 +62,9 @@ local function draw_chan(chan, x, y, flags)
     lcd.drawLine(x,   y+9, x+7, y+9, SOLID, FORCE)
 
     -- clear other pixel(s) inside the border
-    if not flags == INVERS then
+    if flags ~= INVERS then
         lcd.drawLine(x+1, y+5, x+1, y+5, SOLID, ERASE)
-     end               
+    end
 end
 
 -- frequency screen
@@ -73,10 +73,10 @@ local function draw_freq_screen()
 
     -- table coordinates
     local xpos = { A = 10, B = 34, E = 58, F = 82, R = 106 }
-    local ypos = { 8, 15, 22, 29, 36, 43, 50, 57}
+    local ypos = { 8, 15, 22, 29, 36, 43, 50, 57 }
 
     -- draw vertical dividers
-    for i=7,103,24 do
+    for i=7,127,24 do
         lcd.drawLine(i, 1, i, 63, SOLID, FORCE)
     end
 
@@ -86,7 +86,7 @@ local function draw_freq_screen()
     lcd.drawLine( 46, 6,  63, 6, SOLID, FORCE)
     lcd.drawLine( 70, 6,  87, 6, SOLID, FORCE)
     lcd.drawLine( 94, 6, 111, 6, SOLID, FORCE)
-    lcd.drawLine(118, 6, 124, 6, SOLID, FORCE)
+    lcd.drawLine(118, 6, 127, 6, SOLID, FORCE)
 
     -- draw channel numbers
     for i=1,8 do
@@ -103,7 +103,7 @@ local function draw_freq_screen()
                 lcd.drawText(xpos[band], ypos[i], freqs[i], SMLSIZE)
             else
                 -- fill out box
-                lcd.drawFilledRectangle(xpos[band]-3, ypos[i]-1, 25, 7, SOLID)
+                lcd.drawFilledRectangle(xpos[band]-3, ypos[i]-1, 25, 8, SOLID)
                 lcd.drawText(xpos[band], ypos[i], freqs[i], SMLSIZE + INVERS)
             end
         end
@@ -131,10 +131,10 @@ local function draw_pos_screen()
         lcd.drawText(1, ypos[band]+2, band, SMLSIZE)
         -- draw channel boxes
         for i=1,8 do
-             local flags=0
-             if not is_legal(freqs[i]) then
-               flags= INVERS
-             end
+            local flags = 0
+            if not is_legal(freqs[i]) then
+                flags = INVERS
+            end
             draw_chan(i, pos[band][i], ypos[band], flags)
         end
     end

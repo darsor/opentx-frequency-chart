@@ -4,12 +4,9 @@ local current_screen = 1
 local min_freq = 5645
 local max_freq = 5945
 
-local min_allowed = 0
-local max_allowed = 10000
-
 -- Uncomment following two lines for EU
-min_allowed = 5725
-max_allowed = 5875
+--local min_allowed = 5725
+--local max_allowed = 5875
 
 -- minimum and maximum screen x-coordinates for position screen
 local min_xpos = 11
@@ -46,12 +43,16 @@ end
 
 -- returns if a frequency is legal
 local function is_legal(freq)
-   return tonumber(freq) > min_allowed and tonumber(freq) < max_allowed
+    if max_allowed == nil or min_allowed == nil then
+        return true
+    else
+        return tonumber(freq) > min_allowed and tonumber(freq) < max_allowed
+    end
 end
 
 -- draw a channel number and border
 local function draw_chan(chan, x, y, flags)
-    -- draw number    
+    -- draw number
     lcd.drawText(x+2, y+2, chan, SMLSIZE + flags)
 
     -- draw border
@@ -61,7 +62,7 @@ local function draw_chan(chan, x, y, flags)
     lcd.drawLine(x,   y+9, x+7, y+9, SOLID, FORCE)
 
     -- clear other pixel(s) inside the border
-    if not flags == INVERS then
+    if flags ~= INVERS then
         lcd.drawLine(x+1, y+5, x+1, y+5, SOLID, ERASE)
     end
 end
@@ -95,13 +96,13 @@ local function draw_freq_screen()
         lcd.drawText(2, ypos[band], band)
         -- draw frequencies
         for i=1,8 do
-            if is_legal(freqs[i]) then 
+            if is_legal(freqs[i]) then
                 lcd.drawText(xpos[i], ypos[band], freqs[i])
             else
                 -- fill out box
                 lcd.drawFilledRectangle(xpos[i]-4, ypos[band]-2, 26, 10, SOLID)
                 lcd.drawText(xpos[i], ypos[band], freqs[i], INVERS)
-            end 
+            end
         end
     end
 end
@@ -127,10 +128,10 @@ local function draw_pos_screen()
         lcd.drawText(2, ypos[band]+2, band, SMLSIZE)
         -- draw channel boxes
         for i=1,8 do
-             local flags=0
-             if not is_legal(freqs[i]) then
-               flags= INVERS
-             end
+            local flags = 0
+            if not is_legal(freqs[i]) then
+                flags = INVERS
+            end
             draw_chan(i, pos[band][i], ypos[band], flags)
         end
     end
