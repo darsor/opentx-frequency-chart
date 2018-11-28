@@ -25,7 +25,7 @@ Make sure you are using OpenTX 2.2 with Lua enabled.
 Download the latest release [here](https://github.com/darsor/opentx-frequency-chart/releases) and follow the instructions.
 
 ### Manual way (latest version):
-Simply copy `X7.lua` or `X9.lua` (depending on which transmitter you have) into the `/SCRIPTS/TELEMTRY` folder of
+Simply copy `X7.lua`, `XLite.lua` or `X9.lua` (depending on which transmitter you have) into the `/SCRIPTS/TELEMTRY` folder of
 your transmitter's SD card. Rename the file to whatever you want (e.g. `FREQ.lua`), but the name CANNOT be more
 than 6 characters long, or it will not show up in the next step.
 
