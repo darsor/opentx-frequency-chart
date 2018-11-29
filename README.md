@@ -5,7 +5,7 @@ A Lua script for FrSky Taranis transmitters running OpenTX 2.2
 ![x9d-pos](http://i.imgur.com/LJ1MlxC.png)
 ![x9d-freq](http://i.imgur.com/hEfALmc.png)
 
-### Taranis Q X7 Screenshots
+### Taranis Q X7 and X-Lite Screenshots
 ![x7-pos](http://i.imgur.com/4kvOI5L.png)
 ![x7-freq](http://i.imgur.com/2gHPHAA.png)
 
